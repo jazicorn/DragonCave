@@ -61,21 +61,23 @@ public class Story extends Scripts {
         """
     );
 
-    // void methods
+    // void methods - story
     public void printIntro() { System.out.println(intro);}
     public void printDie() { System.out.println(die);}
     public void printLive() { System.out.println(live);}
     public void printPlayAgain() { System.out.println(playAgain);}
     public void printGoodbye() { System.out.println(goodbye);}
+    // void methods - errors
     public void printNumber() { System.out.println(number);}
     public void printString() { System.out.println(string);}
 
-    // get string methods
+    // get string methods - story
     public String getIntro() { return intro; }
     public String getDie() { return die; }
     public String getLive() { return live; }
     public String getPlayAgain() { return playAgain; }
     public String getGoodbye() { return goodbye; }
+    // get string methods - errors
     public String getNumber() { return number; }
     public String getString() { return string; }
 
