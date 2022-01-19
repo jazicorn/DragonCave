@@ -1,18 +1,22 @@
-package DragonCave.project.actions;
+package DragonCave.project;
 
+// imported custom packages
+import DragonCave.project.scripts.Scripts;
+import DragonCave.project.scripts.Story;
+// imported utility packages
 import java.util.Scanner;
 
 public class Events {
 
     // story strings
-    String intro;
-    String live;
-    String die;
-    String restart;
-    String goodbye;
+    private String intro;
+    private String live;
+    private String die;
+    private String restart;
+    private String goodbye;
     // error strings
-    String errorStr;
-    String errorNum;
+    private String errorStr;
+    private String errorNum;
 
     // Variable
     private String answer;
@@ -22,7 +26,7 @@ public class Events {
     // create story object - to implement story scripts
     Scripts story = new Story();
     // assign story methods to strings
-    public Events() {
+    protected Events() {
         try {
             intro = story.getIntro();
             live = story.getLive();
@@ -37,10 +41,10 @@ public class Events {
     }
 
     // Setter
-    public void setAnswer(String newAnswer) {
+    private void setAnswer(String newAnswer) {
         this.answer = newAnswer;
     }
-    public void setNumber(int newNumber) {
+    private void setNumber(int newNumber) {
         this.number = newNumber;
     }
 
@@ -52,7 +56,7 @@ public class Events {
     }
 
     // user input
-    public void path() {
+    private void path() {
         Scanner scan = new Scanner(System.in);
         try {
             // script of user choice
@@ -87,7 +91,7 @@ public class Events {
         scan.close();
     }
 
-    public void restart() {
+    private void restart() {
         Scanner scan = new Scanner(System.in);
         try {
             System.out.println(restart);
@@ -110,7 +114,7 @@ public class Events {
         scan.close();
     }
 
-    public void quit() {
+    private void quit() {
         if (playAgain) {
             play();
         } else {

@@ -1,4 +1,4 @@
-package DragonCave.project.actions;
+package DragonCave.project.scripts;
 
 public abstract class Scripts {
     public String intro;

@@ -1,4 +1,4 @@
-package DragonCave.project.actions;
+package DragonCave.project.scripts;
 
 public class Story extends Scripts {
 
