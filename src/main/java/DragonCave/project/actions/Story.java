@@ -44,8 +44,7 @@ public class Story extends Scripts {
 
     public String goodbye = String.format("\n%s",
         """
-        "Do you want to play again?"
-        Please Enter yes or no:
+        See you on your next adventure! :)
         """
     );
 
