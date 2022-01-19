@@ -4,7 +4,7 @@ package DragonCave.project;
 import DragonCave.project.scripts.Scripts;
 import DragonCave.project.scripts.Story;
 // imported utility packages
-import java.util.Scanner;
+import java.util.*;
 
 public class Events {
 
@@ -61,40 +61,35 @@ public class Events {
     private void path() {
         Scanner scan = new Scanner(System.in);
         try {
-            // prints script of user choice
-            if (scan.hasNextInt()) {
-                number = scan.nextInt();
-                setNumber(number);
-                if (number == 1) {
-                    // prints scenario die
-                    System.out.println(die);
-                    restart();
-                } else if (number == 2) {
-                    // prints scenario live
-                    System.out.println(live);
-                    restart();
-                } else {
-                    System.out.println(errorNum);
-                    path();
-                }
+            number = scan.nextInt();
+            setNumber(number);
+            if (number == 1) {
+                // prints scenario die
+                System.out.println(die);
+                restart();
+            } else if (number == 2) {
+                // prints scenario live
+                System.out.println(live);
+                restart();
             } else {
-                // takes in prompt that isn't a number
-                answer = scan.nextLine();
-                setAnswer(answer);
-                if (answer.equals("quit") || answer.equals("q")) {
-                    // exits program
-                    System.exit(0);
-                } else if (answer.equals("restart")) {
-                    // starts program from beginning
-                    play();
-                } else {
-                    // prints error message and replays path method
-                    System.out.println(errorNum);
-                    path();
-                }
+                System.out.println(errorNum);
+                path();
             }
-        } catch(Exception e){
-            System.out.println("void method path error");
+        } catch (InputMismatchException e){
+            // takes in prompt that isn't a number
+            answer = scan.nextLine();
+            setAnswer(answer);
+            if (answer.equals("quit") || answer.equals("q")) {
+                // exits program
+                System.exit(0);
+            } else if (answer.equals("restart")) {
+                // starts program from beginning
+                play();
+            } else {
+                // prints error message and replays path method
+                System.out.println(errorNum);
+                path();
+            }
         }
         scan.close();
     }
