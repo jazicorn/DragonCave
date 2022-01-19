@@ -18,9 +18,11 @@ public class Events {
     private String errorStr;
     private String errorNum;
 
-    // Variable
+    // user string answer
     private String answer;
+    // user number answer
     private int number;
+    // user choice - play again
     private boolean playAgain;
 
     // create story object - to implement story scripts
@@ -40,7 +42,7 @@ public class Events {
         }
     }
 
-    // Setter
+    // Set user answers
     private void setAnswer(String newAnswer) {
         this.answer = newAnswer;
     }
@@ -48,25 +50,27 @@ public class Events {
         this.number = newNumber;
     }
 
-    // returns which user path choice
+    // starts program
     public void play() {
         // start story
         System.out.println(intro);
         path();
     }
 
-    // user input
+    // prompts user scenario choice
     private void path() {
         Scanner scan = new Scanner(System.in);
         try {
-            // script of user choice
+            // prints script of user choice
             if (scan.hasNextInt()) {
                 number = scan.nextInt();
                 setNumber(number);
                 if (number == 1) {
+                    // prints scenario die
                     System.out.println(die);
                     restart();
                 } else if (number == 2) {
+                    // prints scenario live
                     System.out.println(live);
                     restart();
                 } else {
@@ -74,13 +78,17 @@ public class Events {
                     path();
                 }
             } else {
+                // takes in prompt that isn't a number
                 answer = scan.nextLine();
                 setAnswer(answer);
                 if (answer.equals("quit") || answer.equals("q")) {
+                    // exits program
                     System.exit(0);
                 } else if (answer.equals("restart")) {
+                    // starts program from beginning
                     play();
                 } else {
+                    // prints error message and replays path method
                     System.out.println(errorNum);
                     path();
                 }
@@ -91,13 +99,15 @@ public class Events {
         scan.close();
     }
 
+    // ask player if they want to play again or exit program
     private void restart() {
         Scanner scan = new Scanner(System.in);
         try {
+            // ask user if they want to replay game
             System.out.println(restart);
             answer = scan.nextLine();
             setAnswer(answer);
-
+            // changes playAgain boolean to false if user selects "n"
             if (answer.equals("y") || answer.equals("Y")) {
                 playAgain = true;
             } else if (answer.equals("n") || answer.equals("N")) {
@@ -114,6 +124,7 @@ public class Events {
         scan.close();
     }
 
+    // exits program if playAgain is false
     private void quit() {
         if (playAgain) {
             play();

@@ -2,6 +2,7 @@ package DragonCave.project.scripts;
 
 public class Story extends Scripts {
 
+    // strings for story
     public String intro = String.format("\n%s",
         """
         You are in a land full of dragons. In front of you,
@@ -48,7 +49,7 @@ public class Story extends Scripts {
         """
     );
 
-    // set errors
+    // strings for errors
     public String number = String.format("%s\n",
         """
         Please enter a valid response: 1 or 2.
