@@ -4,87 +4,105 @@ import java.util.Scanner;
 
 public class Events {
 
-    public boolean playAgain;
-    public boolean error = false;
-    public boolean quit = false;
-    public int number;
+    // story strings
+    String intro;
+    String live;
+    String die;
+    String restart;
+    String goodbye;
+    // error strings
+    String errorStr;
+    String errorNum;
 
-    String[] option = {"yes", "no", "error", "quit"};
+    // Variable
+    private String answer;
+    private int number;
+    private boolean playAgain;
 
-    Scripts.Story story = new Scripts.Story();
-    Scripts.Error errors = new Scripts.Error();
+    // create story object - to implement story scripts
+    Scripts story = new Story();
+    // assign story methods to strings
+    public Events() {
+        intro = story.getIntro();
+        live = story.getLive();
+        die = story.getDie();
+        restart = story.getPlayAgain();
+        goodbye = story.getGoodbye();
+        errorStr = story.getString();
+        errorNum = story.getNumber();
+    }
+
+    // Setter
+    public void setAnswer(String newAnswer) {
+        this.answer = newAnswer;
+    }
+    public void setNumber(int newNumber) {
+        this.number = newNumber;
+    }
 
     // returns which user path choice
     public void play() {
-        Scanner scan = new Scanner(System.in);
+        // start story
+        System.out.println(intro);
+        path();
+    }
 
+    // user input
+    public void path() {
+        Scanner scan = new Scanner(System.in);
         // script of user choice
         if (scan.hasNextInt()) {
             number = scan.nextInt();
-            if (number == 1 || number == 2) {
-                results();
+            setNumber(number);
+            if (number == 1) {
+                System.out.println(die);
                 restart();
-            } else{
-                errors.numbers();
-                play();
+            } else if (number == 2) {
+                System.out.println(live);
+                restart();
+            } else {
+                System.out.println(errorNum);
+                path();
             }
-
-        } else {
-            String invalid = scan.nextLine();
-            if (invalid.equals("quit") || invalid.equals("q")) {
+        }  else {
+            answer = scan.nextLine();
+            setAnswer(answer);
+            if (answer.equals("quit") || answer.equals("q")) {
                 System.exit(0);
-            }  else if(invalid.equals("story")) {
-                story.start();
+            }  else if(answer.equals("restart")) {
                 play();
             }else {
-                errors.numbers();
-                play();
+                System.out.println(errorNum);
+                path();
             }
         }
-    }
-
-    public void results() {
-        if (number == 1) {
-            story.Die();
-        } else if (number == 2) {
-            story.Live();
-        } else {
-          error = true;
-        }
+        scan.close();
     }
 
     public void restart() {
-        story.playAgain();
         Scanner scan = new Scanner(System.in);
-        String input = scan.nextLine();
+        System.out.println(restart);
+        answer = scan.nextLine();
+        setAnswer(answer);
 
-        if (input.equals(option[0])) {
+        if (answer.equals("y") || answer.equals("Y")) {
             playAgain = true;
-        } else if (input.equals(option[1])) {
-            story.goodbye();
+        } else if (answer.equals("n") || answer.equals("N")) {
+            System.out.println(goodbye);
             playAgain = false;
-        } else if (input.equals(option[2])) {
-            error = true;
-        } else if (input.equals(option[3])) {
-            quit = false;
-            story.goodbye();
-            quit();
-
         } else {
-            errors.strings();
+            System.out.println(errorStr);
             restart();
         }
-
+        quit();
+        scan.close();
     }
 
     public void quit() {
-        if (quit) {
-            System.exit(0);
-        } else if (!playAgain) {
-            System.exit(0);
+        if (playAgain) {
+            play();
         } else {
-            assert true;
+            System.exit(0);
         }
     }
-
 }
