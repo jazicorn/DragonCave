@@ -12,13 +12,13 @@ User is given a story based on which path(scenario) they choose.
 
 ### Set-up Instructions
 
-Clone repository
+Enter command into commandline
 
 ```bash
 git clone https://github.com/jazicorn/DragonCave.git
 ```
 
-#### Usage
+### Usage
 Make sure you are in the top program folder that contains pom.xml file. <br>
 Enter and run each step in commandline.
 
@@ -33,5 +33,6 @@ java -cp target/DragonCave-1.0-SNAPSHOT.jar DragonCave.project.Main
 ```
 
 <hr />
+
 #### License
 [MIT](https://choosealicense.com/licenses/mit/)
