@@ -1,8 +1,7 @@
 package DragonCave.project;
 
 // imported custom packages
-import DragonCave.project.scripts.Scripts;
-import DragonCave.project.scripts.Story;
+import DragonCave.project.scripts.DragonCave;
 // imported utility packages
 import java.util.*;
 
@@ -26,7 +25,7 @@ public class Events {
     private boolean playAgain;
 
     // create story object - to implement story scripts
-    Scripts story = new Story();
+    DragonCave story = new DragonCave();
     // assign story methods to strings
     protected Events() {
         try {
