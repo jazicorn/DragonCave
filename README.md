@@ -29,7 +29,7 @@ mvn clean package
 
 ##### Step 2
 ```bash
-java -cp target/DragonCave-1.0-SNAPSHOT.jar DragonCave.project.Main 
+java -cp target/jazicorn.DragonCave-1.0-SNAPSHOT.jar jazicorn.DragonCave.Main
 ```
 
 <hr />
