@@ -1,8 +1,11 @@
-package DragonCave.project.scripts;
+package jazicorn.DragonCave.scripts;
 
-interface _Story {
+public interface _Script {
     // strings - story
-    String intro = "Story introduction and instructions on using the program";
+    String intro = String.format("\n%s",
+            """
+            Introduction and instructions on using the program
+            """);
     String die= "Scenario in which character dies";
     String live = "Scenario in which character lives";
     String playAgain = "Prompt user to play game again";
@@ -12,14 +15,14 @@ interface _Story {
     String string = "User input invalid string";
 
     // print strings - story scripts
-    void printIntro();
-    void printDie();
-    void printLive();
-    void printPlayAgain();
-    void printGoodbye();
+    default void printIntro() {System.out.println(intro);}
+    default void printDie() {System.out.println(die);}
+    default void printLive() {System.out.println(live);}
+    default void printPlayAgain() {System.out.println(playAgain);}
+    default void printGoodbye() {System.out.println(goodbye);}
     // print - user input errors
-    void printNumber();
-    void printString();
+    default void printNumber() {System.out.println(number);}
+    default void printString() {System.out.println(string);}
 
     // get string - story
     String getIntro();
@@ -30,6 +33,5 @@ interface _Story {
     // get string - errors
     String getNumber();
     String getString();
-
 
 }

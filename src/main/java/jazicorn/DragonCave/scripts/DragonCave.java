@@ -1,14 +1,14 @@
-package DragonCave.project.scripts;
+package jazicorn.DragonCave.scripts;
 
-public class DragonCave implements _Story {
+public class DragonCave implements _Script {
 
     public String intro = String.format("\n%s",
-            """
-            You are in a land full of dragons. In front of you,
-            and will share his treasure with you. The other dragon
-            is greedy and hungry and will eat you on sight.
-            Which cave will you go into? (1 or 2)
-            """
+        """
+        You are in a land full of dragons. In front of you,
+        and will share his treasure with you. The other dragon
+        is greedy and hungry and will eat you on sight.
+        Which cave will you go into? (1 or 2)
+        """
     );
 
     public String die = String.format("\n%s",

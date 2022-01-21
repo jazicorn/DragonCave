@@ -1,21 +1,11 @@
-package DragonCave.project;
+package jazicorn.DragonCave;
 
-// imported custom packages
-import DragonCave.project.scripts.DragonCave;
-// imported utility packages
+import jazicorn.DragonCave.scripts.DragonCave;
 import java.util.*;
 
-public class Events {
-
-    // story strings
-    private String intro;
-    private String live;
-    private String die;
-    private String restart;
-    private String goodbye;
-    // error strings
-    private String errorStr;
-    private String errorNum;
+public class EventStory {
+    // create story object - to print story scripts
+    DragonCave story = new DragonCave();
 
     // user string answer
     private String answer;
@@ -23,23 +13,6 @@ public class Events {
     private int number;
     // user choice - play again
     private boolean playAgain;
-
-    // create story object - to implement story scripts
-    DragonCave story = new DragonCave();
-    // assign story methods to strings
-    protected Events() {
-        try {
-            intro = story.getIntro();
-            live = story.getLive();
-            die = story.getDie();
-            restart = story.getPlayAgain();
-            goodbye = story.getGoodbye();
-            errorStr = story.getString();
-            errorNum = story.getNumber();
-        } catch(NullPointerException e) {
-            System.out.println("Story method returns null");
-        }
-    }
 
     // Set user answers
     private void setAnswer(String newAnswer) {
@@ -52,7 +25,7 @@ public class Events {
     // starts program
     public void play() {
         // start story
-        System.out.println(intro);
+        story.printIntro();
         path();
     }
 
@@ -64,14 +37,14 @@ public class Events {
             setNumber(number);
             if (number == 1) {
                 // prints scenario die
-                System.out.println(die);
+                story.printDie();
                 restart();
             } else if (number == 2) {
                 // prints scenario live
-                System.out.println(live);
+                story.printLive();
                 restart();
             } else {
-                System.out.println(errorNum);
+                story.printNumber(); // error number input
                 path();
             }
         } catch (InputMismatchException e){
@@ -86,7 +59,7 @@ public class Events {
                 play();
             } else {
                 // prints error message and replays path method
-                System.out.println(errorNum);
+                story.printNumber(); // error number input
                 path();
             }
         }
@@ -98,17 +71,17 @@ public class Events {
         Scanner scan = new Scanner(System.in);
         try {
             // ask user if they want to replay game
-            System.out.println(restart);
+            story.printPlayAgain();
             answer = scan.nextLine();
             setAnswer(answer);
             // changes playAgain boolean to false if user selects "n"
             if (answer.equals("y") || answer.equals("Y")) {
                 playAgain = true;
             } else if (answer.equals("n") || answer.equals("N")) {
-                System.out.println(goodbye);
+                story.printGoodbye();
                 playAgain = false;
             } else {
-                System.out.println(errorStr);
+                story.printString(); // error string input
                 restart();
             }
             quit();
